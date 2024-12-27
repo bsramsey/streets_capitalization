@@ -1,0 +1,27 @@
+﻿var intersection_name = $feature.INTERSECTION_NAME; 
+var words = Split(intersection_name, " ");
+var new_words = "";
+
+
+// Iterate through each word
+for (var i = 0; i < Count(words); i++) {
+    var word = words[i];
+    
+    // Check if the word is "Us" (in any case format) and if the next word is "Highway"
+    if (Lower(word) == "us" && i + 1 < Count(words) && Lower(words[i + 1]) == "highway") {
+        new_words += "US";  // Convert "Us" to "US"
+    } else {
+        // Capitalize the first letter and make the rest lowercase for all other cases
+        new_words += Upper(Left(word, 1)) + Lower(Mid(word, 1, Count(word) - 1));
+    }
+
+
+    // Add a space between words except for the last word
+    if (i < Count(words) - 1) {
+        new_words += " ";
+    }
+}
+
+
+// Return the concatenated result
+return new_words;
